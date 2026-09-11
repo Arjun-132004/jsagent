@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jsagent-app
+  namespace: storefront-devjs
+  labels:
+    app.kubernetes.io/name: jsagent-app
+    app.kubernetes.io/managed-by: deepagent
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jsagent-app
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
